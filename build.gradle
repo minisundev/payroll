@@ -53,6 +53,9 @@ dependencies {
     // docs
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0'
     implementation 'io.swagger.core.v3:swagger-annotations:2.2.22'
+
+    //testcontainer
+    testImplementation 'org.testcontainers:mysql:1.20.0'
 }
 
 tasks.named('test') {
