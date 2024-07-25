@@ -1,15 +1,14 @@
 package com.lec.payroll.domain.payroll.model;
 
+import com.lec.payroll.domain.employee.model.Department;
 import com.lec.payroll.domain.employee.model.Employee;
+import com.lec.payroll.domain.employee.model.Position;
 import com.lec.payroll.domain.global.model.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 
+@Builder
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -18,9 +17,15 @@ public class Payroll extends BaseEntity {
     @Id
     private Long id;
 
-    private Long paycheck;
+    @Column(nullable = false)
+    private Integer paycheck;
 
     @OneToOne
     private Employee employee;
 
+    @Column(nullable = false)
+    private Department department;
+
+    @Column(nullable = false)
+    private Position position;
 }
