@@ -1,16 +1,16 @@
 package com.lec.payroll.domain.employee.controller;
 
 import com.lec.payroll.domain.employee.dto.request.EmployeeCreateRequest;
+import com.lec.payroll.domain.employee.dto.response.EmployeeResponse;
 import com.lec.payroll.domain.employee.service.EmployeeService;
 import com.lec.payroll.domain.global.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -20,11 +20,11 @@ public class EmployeeController {
 
     @PostMapping("")
     public ResponseEntity<ApiResponse<Void>> addEmployee(@Valid @RequestBody EmployeeCreateRequest request) {
-        return new ResponseEntity(
-                new ApiResponse<Void>(
-                        null,
-                        employeeService.addEmployee(request),
-                        null),
-                HttpStatus.CREATED);
+        employeeService.addEmployee(request);
+        String msg = "Employee added successfully";
+        ApiResponse<Void> response = new ApiResponse<>(null,msg,null);
+        return new ResponseEntity(response, HttpStatus.CREATED);
     }
+
+
 }
