@@ -27,4 +27,14 @@ public class PayRollController {
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
+    @GetMapping("/{payrollId}")
+    public ResponseEntity<ApiResponse<PayrollResponse>> getPayroll(
+            @PathVariable(name = "payrollId") Long payrollId
+    ) {
+        PayrollResponse result = payrollService.getPayroll(payrollId);
+        ApiResponse<PayrollResponse> response
+                = new ApiResponse<>(null,null,result);
+        return ResponseEntity.ok().body(response);
+    }
+
 }
