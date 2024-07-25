@@ -13,9 +13,8 @@ public class EmployeeService {
     private final EmployeeRepository employeeRepository;
     private final ModelMapper modelMapper;
 
-    public String addEmployee(EmployeeCreateRequest request) {
+    public void addEmployee(EmployeeCreateRequest request) {
         Employee employee = modelMapper.map(request, Employee.class);
         employeeRepository.save(employee);
-        return "Employee added successfully";
     }
 }
