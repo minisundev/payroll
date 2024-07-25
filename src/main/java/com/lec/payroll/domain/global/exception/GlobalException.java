@@ -1,4 +1,4 @@
-package com.lec.payroll.exception;
+package com.lec.payroll.domain.global.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

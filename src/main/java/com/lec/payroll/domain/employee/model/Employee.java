@@ -1,15 +1,16 @@
-package com.lec.payroll.model;
+package com.lec.payroll.domain.employee.model;
 
+import com.lec.payroll.domain.global.model.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+@Builder
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table(name = "employees")
-public class Employee extends BaseEntity{
+public class Employee extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

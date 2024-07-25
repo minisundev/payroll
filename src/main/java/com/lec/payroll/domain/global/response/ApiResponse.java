@@ -1,10 +1,10 @@
-package com.lec.payroll.dto.response;
+package com.lec.payroll.domain.global.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public record ApiResponse<T>(
-        int code,
+        Integer code,
         String message,
         T data
 ) {

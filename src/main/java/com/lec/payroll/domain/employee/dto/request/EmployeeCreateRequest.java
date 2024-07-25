@@ -1,6 +1,6 @@
-package com.lec.payroll.dto.request;
+package com.lec.payroll.domain.employee.dto.request;
 
-import com.lec.payroll.model.Position;
+import com.lec.payroll.domain.employee.model.Position;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 

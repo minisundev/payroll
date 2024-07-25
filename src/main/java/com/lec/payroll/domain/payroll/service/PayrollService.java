@@ -1,6 +1,6 @@
-package com.lec.payroll.service;
+package com.lec.payroll.domain.payroll.service;
 
-import com.lec.payroll.repository.PayrollRepository;
+import com.lec.payroll.domain.payroll.repository.PayrollRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

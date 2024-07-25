@@ -1,5 +1,7 @@
-package com.lec.payroll.model;
+package com.lec.payroll.domain.payroll.model;
 
+import com.lec.payroll.domain.employee.model.Employee;
+import com.lec.payroll.domain.global.model.BaseEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;

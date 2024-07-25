@@ -1,4 +1,4 @@
-package com.lec.payroll.model;
+package com.lec.payroll.domain.employee.model;
 
 public enum Position {
     STAFF,

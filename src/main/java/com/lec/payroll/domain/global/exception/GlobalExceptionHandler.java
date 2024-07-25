@@ -1,7 +1,7 @@
-package com.lec.payroll.exception;
+package com.lec.payroll.domain.global.exception;
 
-import com.lec.payroll.dto.response.ApiResponse;
-import com.lec.payroll.dto.response.ErrorResponse;
+import com.lec.payroll.domain.global.response.ApiResponse;
+import com.lec.payroll.domain.global.response.ErrorResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;

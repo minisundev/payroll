@@ -1,6 +1,7 @@
-package com.lec.payroll.exception;
+package com.lec.payroll.domain.global.exception;
 
-public class DetailedErrorCode implements ErrorCode {
+public enum CommonErrorCode implements ErrorCode{
+    ;
 
     @Override
     public String getCode() {

@@ -1,4 +1,4 @@
-package com.lec.payroll.model;
+package com.lec.payroll.domain.global.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
