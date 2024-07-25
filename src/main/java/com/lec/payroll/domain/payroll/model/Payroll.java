@@ -15,6 +15,7 @@ import lombok.*;
 @Table(name = "payrolls")
 public class Payroll extends BaseEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -22,10 +23,4 @@ public class Payroll extends BaseEntity {
 
     @OneToOne
     private Employee employee;
-
-    @Column(nullable = false)
-    private Department department;
-
-    @Column(nullable = false)
-    private Position position;
 }
