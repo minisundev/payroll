@@ -1,9 +1,10 @@
 package com.lec.payroll.domain.payroll.controller;
 
+import com.lec.payroll.domain.employee.model.Department;
 import com.lec.payroll.domain.global.response.ApiResponse;
 import com.lec.payroll.domain.payroll.dto.request.PayrollCreateRequest;
+import com.lec.payroll.domain.payroll.dto.response.DepartmentPayrollResponse;
 import com.lec.payroll.domain.payroll.dto.response.PayrollResponse;
-import com.lec.payroll.domain.payroll.model.Payroll;
 import com.lec.payroll.domain.payroll.service.PayrollService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,4 +38,13 @@ public class PayRollController {
         return ResponseEntity.ok().body(response);
     }
 
+    @GetMapping("")
+    public ResponseEntity<ApiResponse<DepartmentPayrollResponse>> getTotalPayrollByDepartment(
+            @Valid @RequestParam(name = "department") Department department
+            ) {
+        DepartmentPayrollResponse result = payrollService.getTotalPayrollByDepartment(department);
+        ApiResponse<DepartmentPayrollResponse> response
+                = new ApiResponse<>(null,null,result);
+        return ResponseEntity.ok().body(response);
+    }
 }
