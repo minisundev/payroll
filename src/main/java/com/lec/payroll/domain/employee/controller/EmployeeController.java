@@ -26,5 +26,11 @@ public class EmployeeController {
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
-
+    @GetMapping("")
+    public ResponseEntity<ApiResponse<List<EmployeeResponse>>> getEmployees() {
+        List<EmployeeResponse> results = employeeService.getEmployees();
+        ApiResponse<List<EmployeeResponse>> response
+                = new ApiResponse<>(null,null,results);
+        return ResponseEntity.ok().body(response);
+    }
 }
