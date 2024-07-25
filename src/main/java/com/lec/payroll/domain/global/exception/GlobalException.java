@@ -1,10 +1,11 @@
 package com.lec.payroll.domain.global.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 @Getter
-@RequiredArgsConstructor
-public class GlobalException extends Exception {
-    private ErrorCode errorCode;
+@AllArgsConstructor
+public class GlobalException extends RuntimeException {
+    private ErrorCode ErrorCode;
 }
