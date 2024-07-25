@@ -26,6 +26,25 @@ public class PayrollService {
         payrollRepository.save(payroll);;
     }
 
+    public PayrollResponse getPayroll(Long payrollId) {
+        Payroll payroll = findPayrollById(payrollId);
+        Employee employee = payroll.getEmployee();
+        EmployeeResponse employeeResponse = convertEmployeeToResponse(employee);
+        PayrollResponse response = new PayrollResponse(payroll.getId(),payroll.getPaycheck(),employeeResponse);
+        return response;
+    }
+
+    private EmployeeResponse convertEmployeeToResponse(Employee employee) {
+        EmployeeResponse employeeResponse = EmployeeResponse.builder()
+                .id(employee.getId())
+                .name(employee.getName())
+                .salary(employee.getSalary())
+                .department(employee.getDepartment())
+                .position(employee.getPosition())
+                .build();
+        return employeeResponse;
+    }
+
     private void verifyEmployeeExistence(Long employeeId) {
         Employee employee = employeeRepository.findById(employeeId)
                 .orElseThrow(()-> new GlobalException(CommonErrorCode.NOT_FOUND));
