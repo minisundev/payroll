@@ -20,6 +20,11 @@ public class EmployeeController {
 
     @PostMapping("")
     public ResponseEntity<ApiResponse<Void>> addEmployee(@Valid @RequestBody EmployeeCreateRequest request) {
-        return new ResponseEntity(new ApiResponse<Void>(null, employeeService.addEmployee(request), null), HttpStatus.CREATED);
+        return new ResponseEntity(
+                new ApiResponse<Void>(
+                        null,
+                        employeeService.addEmployee(request),
+                        null),
+                HttpStatus.CREATED);
     }
 }
