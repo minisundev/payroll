@@ -1,20 +1,30 @@
 package com.lec.payroll.domain.global.exception;
 
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+
+@RequiredArgsConstructor
 public enum CommonErrorCode implements ErrorCode{
-    ;
+
+
+    NOT_FOUND(4000,"No data available for the requested id", HttpStatus.NOT_FOUND);
 
     @Override
-    public String getCode() {
-        return "";
+    public Integer getCode() {
+        return code;
     }
 
     @Override
     public String getMessage() {
-        return "";
+        return message;
     }
 
     @Override
-    public String getHttpStatus() {
-        return "";
+    public HttpStatus getHttpStatus() {
+        return httpStatus;
     }
+
+    private final Integer code;
+    private final String message;
+    private final HttpStatus httpStatus;
 }
