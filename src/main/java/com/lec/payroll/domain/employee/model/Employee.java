@@ -24,6 +24,6 @@ public class Employee extends BaseEntity {
     @Column
     private Position position;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column
     private Department department;
 }
