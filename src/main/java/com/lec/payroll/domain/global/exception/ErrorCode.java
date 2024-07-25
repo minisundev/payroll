@@ -1,7 +1,9 @@
 package com.lec.payroll.domain.global.exception;
 
+import org.springframework.http.HttpStatus;
+
 public interface ErrorCode {
-    public String getCode();
+    public Integer getCode();
     public String getMessage();
-    public String getHttpStatus();
+    public HttpStatus getHttpStatus();
 }
