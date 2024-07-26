@@ -2,9 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Employee</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .container { margin-top: 20px; }
+    </style>
 </head>
 <body>
+<div class="container">
+    <h1>Create Employee</h1>
+    <div id="createEmployeeFormContainer">
+        <!-- form will be injected here -->
+    </div>
+</div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function createEmployeeForm(positions, departments) {
+            const container = document.getElementById('createEmployeeFormContainer');
+            const form = document.createElement('form');
+            form.id = 'createEmployeeForm';
+
+            form.innerHTML = `
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="salary">Salary</label>
+                    <input type="number" id="salary" name="salary" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="position">Position</label>
+                    <select id="position" name="position" class="form-control" required>
+                        <option value="" disabled selected>Select Position</option>
+                        ${positions.map(pos => `<option value="${pos}">${pos}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="department">Department</label>
+                    <select id="department" name="department" class="form-control" required>
+                        <option value="" disabled selected>Select Department</option>
+                        ${departments.map(dept => `<option value="${dept}">${dept}</option>`).join('')}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            `;
+
+            container.innerHTML = ''; //clear previous content
+            container.appendChild(form);
+
+            form.addEventListener('submit', function(event) {
+                event.preventDefault(); //prevent the default form submission
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                fetch('/api/v1/employee', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => response.json())
+                    .then(() => {
+                        window.location.href = '/employee'; //redirect
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
+        }
+
+        Promise.all([
+            fetch('/api/v1/employee/positions').then(response => response.json()).then(data => data.data),
+            fetch('/api/v1/employee/departments').then(response => response.json()).then(data => data.data)
+        ])
+            .then(([positions, departments]) => {
+                console.log('Positions:', positions);
+                console.log('Departments:', departments);
+                createEmployeeForm(positions, departments);
+            })
+            .catch(error => console.error('Error:', error));
+    });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
