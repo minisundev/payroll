@@ -12,6 +12,11 @@ public class EmployeeFrontController {
 
     private final EmployeeController employeeController;
 
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/employee";
+    }
+
     @GetMapping("/employee")
     public String getEmployees(Model model) {
         model.addAttribute("response", employeeController.getEmployees());
