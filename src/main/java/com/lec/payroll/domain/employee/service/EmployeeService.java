@@ -3,10 +3,13 @@ package com.lec.payroll.domain.employee.service;
 import com.lec.payroll.domain.employee.dto.request.EmployeeCreateRequest;
 import com.lec.payroll.domain.employee.dto.response.EmployeeResponse;
 import com.lec.payroll.domain.employee.model.Employee;
+import com.lec.payroll.domain.employee.model.Position;
 import com.lec.payroll.domain.employee.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -27,6 +30,10 @@ public class EmployeeService {
                 .map(e -> convertEmployeeToResponse(e))
                 .toList();
         return responses;
+    }
+
+    public List<Position> getPositions(){
+        return Arrays.asList(Position.values());
     }
 
     private EmployeeResponse convertEmployeeToResponse(Employee employee) {
