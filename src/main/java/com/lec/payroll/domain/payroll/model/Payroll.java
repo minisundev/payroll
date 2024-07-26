@@ -1,8 +1,6 @@
 package com.lec.payroll.domain.payroll.model;
 
-import com.lec.payroll.domain.employee.model.Department;
 import com.lec.payroll.domain.employee.model.Employee;
-import com.lec.payroll.domain.employee.model.Position;
 import com.lec.payroll.domain.global.model.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
