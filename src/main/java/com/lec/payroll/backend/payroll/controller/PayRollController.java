@@ -11,14 +11,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/v1/payroll")
+@RequestMapping("/api/v1")
 public class PayRollController {
     private final PayrollService payrollService;
 
-    @PostMapping("")
+    @PostMapping("/payroll")
     public ResponseEntity<ApiResponse<Void>> addPayroll(
             @Valid @RequestBody PayrollCreateRequest request
     ) {
@@ -28,7 +29,18 @@ public class PayRollController {
         return new ResponseEntity(response, HttpStatus.CREATED);
     }
 
-    @GetMapping("/{payrollId}")
+    @GetMapping("/payrolls")
+    public ResponseEntity<ApiResponse<List<PayrollResponse>>> getPayrolls(
+            @RequestParam(name = "page") int page,
+            @RequestParam(name = "size") int size
+    ) {
+        List<PayrollResponse> result = payrollService.getPayrolls(page,size);
+        ApiResponse<List<PayrollResponse>> response
+                = new ApiResponse<>(null,null,result);
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping("/payroll/{payrollId}")
     public ResponseEntity<ApiResponse<PayrollResponse>> getPayroll(
             @PathVariable(name = "payrollId") Long payrollId
     ) {
@@ -38,7 +50,7 @@ public class PayRollController {
         return ResponseEntity.ok().body(response);
     }
 
-    @GetMapping("")
+    @GetMapping("/payroll/department")
     public ResponseEntity<ApiResponse<DepartmentPayrollResponse>> getTotalPayrollByDepartment(
             @Valid @RequestParam(name = "department") Department department
             ) {
