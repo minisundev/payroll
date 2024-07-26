@@ -19,18 +19,18 @@ public class EmployeeController {
     private final EmployeeService employeeService;
 
     @PostMapping("")
-    public ResponseEntity<ApiResponse<Void>> addEmployee(@Valid @RequestBody EmployeeCreateRequest request) {
+    public ApiResponse<Void> addEmployee(@Valid @RequestBody EmployeeCreateRequest request) {
         employeeService.addEmployee(request);
         String msg = "Employee added successfully";
         ApiResponse<Void> response = new ApiResponse<>(null,msg,null);
-        return new ResponseEntity(response, HttpStatus.CREATED);
+        return response;
     }
 
     @GetMapping("")
-    public ResponseEntity<ApiResponse<List<EmployeeResponse>>> getEmployees() {
+    public ApiResponse<List<EmployeeResponse>> getEmployees() {
         List<EmployeeResponse> results = employeeService.getEmployees();
         ApiResponse<List<EmployeeResponse>> response
                 = new ApiResponse<>(null,null,results);
-        return ResponseEntity.ok().body(response);
+        return response;
     }
 }
