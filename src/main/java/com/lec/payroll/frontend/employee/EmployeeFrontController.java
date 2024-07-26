@@ -1,6 +1,6 @@
 package com.lec.payroll.frontend.employee;
 
-import com.lec.payroll.domain.employee.controller.EmployeeController;
+import com.lec.payroll.backend.employee.controller.EmployeeController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
