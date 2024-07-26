@@ -15,6 +15,7 @@ import com.lec.payroll.backend.payroll.repository.PayrollRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -32,10 +33,16 @@ public class PayrollService {
 
     public PayrollResponse getPayroll(Long payrollId) {
         Payroll payroll = findPayrollById(payrollId);
-        Employee employee = payroll.getEmployee();
-        EmployeeResponse employeeResponse = convertEmployeeToResponse(employee);
-        PayrollResponse response = new PayrollResponse(payroll.getId(),payroll.getPaycheck(),employeeResponse);
-        return response;
+        return convertPayrollToResponse(payroll);
+    }
+
+    public List<PayrollResponse> getPayrolls(int page, int size) {
+        List<Payroll> payrolls = payrollDslRepository.findPayroll(page, size);
+        List<PayrollResponse> responses = payrolls
+                .stream()
+                .map(payroll -> convertPayrollToResponse(payroll))
+                .toList();
+        return responses;
     }
 
     public DepartmentPayrollResponse getTotalPayrollByDepartment(Department department) {
@@ -45,6 +52,12 @@ public class PayrollService {
                 .departmentName(department.toString())
                 .totalPaycheck(sum)
                 .build();
+    }
+
+    private PayrollResponse convertPayrollToResponse(Payroll payroll) {
+        Employee employee = payroll.getEmployee();
+        EmployeeResponse employeeResponse = convertEmployeeToResponse(employee);
+        return new PayrollResponse(payroll.getId(),payroll.getPaycheck(),employeeResponse);
     }
 
     private EmployeeResponse convertEmployeeToResponse(Employee employee) {
