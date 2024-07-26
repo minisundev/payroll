@@ -43,4 +43,12 @@ public class EmployeeController {
                 = new ApiResponse<>(null,null,results);
         return response;
     }
+
+    @GetMapping("/departments")
+    public ApiResponse<List<Department>> getDepartments() {
+        List<Department> results = employeeService.getDepartments();
+        ApiResponse<List<Department>> response
+                = new ApiResponse<>(null,null,results);
+        return response;
+    }
 }
