@@ -2,6 +2,7 @@ package com.lec.payroll.domain.employee.service;
 
 import com.lec.payroll.domain.employee.dto.request.EmployeeCreateRequest;
 import com.lec.payroll.domain.employee.dto.response.EmployeeResponse;
+import com.lec.payroll.domain.employee.model.Department;
 import com.lec.payroll.domain.employee.model.Employee;
 import com.lec.payroll.domain.employee.model.Position;
 import com.lec.payroll.domain.employee.repository.EmployeeRepository;
@@ -34,6 +35,10 @@ public class EmployeeService {
 
     public List<Position> getPositions(){
         return Arrays.asList(Position.values());
+    }
+
+    public List<Department> getDepartments(){
+        return Arrays.asList(Department.values());
     }
 
     private EmployeeResponse convertEmployeeToResponse(Employee employee) {
