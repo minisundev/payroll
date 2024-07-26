@@ -2,6 +2,8 @@ package com.lec.payroll.domain.employee.controller;
 
 import com.lec.payroll.domain.employee.dto.request.EmployeeCreateRequest;
 import com.lec.payroll.domain.employee.dto.response.EmployeeResponse;
+import com.lec.payroll.domain.employee.model.Department;
+import com.lec.payroll.domain.employee.model.Position;
 import com.lec.payroll.domain.employee.service.EmployeeService;
 import com.lec.payroll.domain.global.response.ApiResponse;
 import jakarta.validation.Valid;
@@ -30,6 +32,14 @@ public class EmployeeController {
     public ApiResponse<List<EmployeeResponse>> getEmployees() {
         List<EmployeeResponse> results = employeeService.getEmployees();
         ApiResponse<List<EmployeeResponse>> response
+                = new ApiResponse<>(null,null,results);
+        return response;
+    }
+
+    @GetMapping("/positions")
+    public ApiResponse<List<Position>> getPositions() {
+        List<Position> results = employeeService.getPositions();
+        ApiResponse<List<Position>> response
                 = new ApiResponse<>(null,null,results);
         return response;
     }
