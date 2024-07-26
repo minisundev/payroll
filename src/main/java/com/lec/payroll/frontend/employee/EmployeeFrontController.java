@@ -17,4 +17,9 @@ public class EmployeeFrontController {
         model.addAttribute("response", employeeController.getEmployees());
         return "employees";
     }
+
+    @GetMapping("/employee/create")
+    public String createEmployee() {
+        return "createEmployee";
+    }
 }
