@@ -37,7 +37,7 @@ public class PayrollService {
     }
 
     public List<PayrollResponse> getPayrolls(int page, int size) {
-        List<Payroll> payrolls = payrollDslRepository.findPayroll(page, size);
+        List<Payroll> payrolls = payrollDslRepository.getAllPayrolls(page, size);
         List<PayrollResponse> responses = payrolls
                 .stream()
                 .map(payroll -> convertPayrollToResponse(payroll))
